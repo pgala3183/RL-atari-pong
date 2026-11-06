@@ -1,0 +1,5 @@
+trial,run_tag,learning_rate,rollout_steps,status,frames,final_reward_100,best_reward_100,normalized_auc,minutes,fps
+lr5e-4_T512,sweep_reinforce_lr5e-4_T512,0.0005,512,max_frames,3006464,-20.24,-20.1,0.015058680554476988,15.3,3282.7
+lr5e-4_T256,sweep_reinforce_lr5e-4_T256,0.0005,256,max_frames,3002368,-20.31,-20.06,0.016033867266518606,15.1,3322.1
+lr1e-3_T512,sweep_reinforce_lr1e-3_T512,0.001,512,max_frames,3006464,-20.34,-20.07,0.015890272523028735,15.3,3280.3
+lr2.5e-4_T512,sweep_reinforce_lr2.5e-4_T512,0.00025,512,max_frames,3006464,-20.36,-20.1,0.015418022983326514,15.3,3281.1

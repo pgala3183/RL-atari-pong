@@ -1,0 +1,12 @@
+# Model checkpoints are large; only the final best.pt of the two main runs is tracked.
+*.pt
+!CMPE260_Project2/reinforce_seed42/best.pt
+!CMPE260_Project2/a2c_seed42/best.pt
+*.tmp
+
+# Local smoke tests and environments
+CMPE260_Project2/smoke_*/
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+*.log

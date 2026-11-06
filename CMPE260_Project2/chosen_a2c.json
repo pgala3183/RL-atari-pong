@@ -1,0 +1,6 @@
+{
+  "trial": "rms3.5e-4_n5",
+  "overrides": {
+    "learning_rate": 0.00035
+  }
+}

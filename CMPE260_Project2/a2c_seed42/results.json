@@ -1,0 +1,59 @@
+{
+  "run_tag": "a2c_seed42",
+  "algorithm": "a2c",
+  "status": "solved",
+  "frames": 3894752,
+  "env_frames": 15579008,
+  "episodes": 1938,
+  "updates": 48684,
+  "samples_used": 3894720,
+  "mean_reward_100": 19.02,
+  "best_mean_reward_100": 19.02,
+  "milestones": {
+    "+15": {
+      "frame": 2500672,
+      "episodes": 1403,
+      "wall_minutes": 21.401104691666358
+    },
+    "solved": {
+      "frame": 3894752,
+      "episodes": 1938,
+      "wall_minutes": 33.27345545833329
+    }
+  },
+  "wall_clock_seconds": 1996.502989200002,
+  "wall_clock_minutes": 33.275049820000035,
+  "avg_fps": 1950.7869615364941,
+  "gpu": "NVIDIA GeForce RTX 5080 Laptop GPU",
+  "cpu_count": 24,
+  "num_params": 1687719,
+  "config": {
+    "algorithm": "a2c",
+    "env_id": "ALE/Pong-v5",
+    "seed": 42,
+    "gamma": 0.99,
+    "num_envs": 16,
+    "rollout_steps": 5,
+    "optimizer": "rmsprop",
+    "learning_rate": 0.00035,
+    "adam_eps": 1e-05,
+    "rmsprop_alpha": 0.99,
+    "rmsprop_eps": 1e-05,
+    "entropy_coef": 0.01,
+    "value_coef": 0.5,
+    "max_grad_norm": 0.5,
+    "gae_lambda": 1.0,
+    "point_reset": false,
+    "normalize_returns": false,
+    "update_chunk": 4096,
+    "use_amp": true,
+    "max_frames": 10000000,
+    "reward_bound": 19.0,
+    "min_episodes_to_solve": 100,
+    "convergence_threshold": 15.0,
+    "checkpoint_every": 250000,
+    "diagnostic_every": 10000,
+    "best_save_interval": 50000,
+    "print_every_seconds": 30.0
+  }
+}

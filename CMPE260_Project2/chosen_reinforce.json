@@ -1,0 +1,7 @@
+{
+  "trial": "lr5e-4_T512",
+  "overrides": {
+    "learning_rate": 0.0005,
+    "rollout_steps": 512
+  }
+}
