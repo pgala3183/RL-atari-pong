@@ -11,6 +11,7 @@ each agent step is 4 emulator frames.
 |---|---|
 | `CMPE260_Project2_PG_Pong.ipynb` | The notebook: REINFORCE, A2C, hyper-parameter sweeps, evaluation, comparison |
 | `CMPE260_Project2_PG_Pong_executed.ipynb` | The same notebook with all outputs from the training run |
+| `CMPE260_Project2_Extended.ipynb` | Follow-up experiments (not yet run): more seeds and longer training, plus variants of REINFORCE and A2C |
 | `pong_envs.py` | Atari wrappers (written by the notebook; needed by Windows worker processes) |
 | `CMPE260_Project2/` | Results of the run: logs, tables, plots, final models |
 
@@ -52,6 +53,22 @@ because of its high-variance Monte-Carlo gradient.
 Caveats: one seed per method. The REINFORCE sweep trials (3M frames each) all ended before
 REINFORCE began improving, so they could not separate the learning rates. Wall-clock times are not
 directly comparable with Project 1, which ran on Colab GPUs with one environment.
+
+## Extended experiments
+
+`CMPE260_Project2_Extended.ipynb` continues from the results above. It reads and writes the same
+`CMPE260_Project2/` folder, so finished runs are reused and `reinforce_seed42` resumes from its
+15M-frame checkpoint. That checkpoint (`latest.pt`) is not in this repository, so continuing
+REINFORCE needs the original results folder; every other experiment starts from scratch. Its queue runs, in priority order:
+
+1. **A2C seeds 43 and 44** with the tuned configuration, to test whether the A2C result is robust.
+2. **REINFORCE continued to 40M frames**, to see whether it keeps improving.
+3. **REINFORCE variants** at 20M frames: a learned value baseline (still Monte-Carlo targets), lr 1e-3, and rollout 256.
+4. **A2C variants**: lr 7e-4 with linear decay (A2C paper setting), 20-step returns, 32 environments, and no entropy bonus.
+
+The full queue takes roughly 11–14 hours on the RTX 5080 laptop (an upper bound, since A2C runs stop
+once solved). Groups can be switched on or off in `RUN_GROUPS`, and an empty file named
+`CMPE260_Project2/STOP` stops the queue cleanly between runs.
 
 ## Running it
 
