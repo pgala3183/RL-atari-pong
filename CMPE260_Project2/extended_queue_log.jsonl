@@ -1,0 +1,10 @@
+{"time": "2026-11-10 15:06:10", "group": "1_a2c_seeds", "run": "a2c_seed43", "status": "solved", "frames": 3859472, "mean_reward_100": 19.0, "minutes_this_session": 35.45827863613764}
+{"time": "2026-11-10 15:40:43", "group": "1_a2c_seeds", "run": "a2c_seed44", "status": "solved", "frames": 3772640, "mean_reward_100": 19.0, "minutes_this_session": 34.54939583937327}
+{"time": "2026-11-10 15:55:02", "group": "2_reinforce_continue", "run": "reinforce_seed42", "status": "solved", "frames": 17829456, "mean_reward_100": 19.0, "minutes_this_session": 14.316420272986095}
+{"time": "2026-11-10 17:40:26", "group": "3_reinforce_variants", "run": "reinforce_vbaseline_seed42", "status": "max_frames", "frames": 20004864, "mean_reward_100": 5.04, "minutes_this_session": 105.39519243240356}
+{"time": "2026-11-10 19:25:56", "group": "3_reinforce_variants", "run": "reinforce_lr1e-3_seed42", "status": "max_frames", "frames": 20004864, "mean_reward_100": -20.27, "minutes_this_session": 105.50910594065984}
+{"time": "2026-11-10 20:43:21", "group": "3_reinforce_variants", "run": "reinforce_T256_seed42", "status": "solved", "frames": 14834848, "mean_reward_100": 19.04, "minutes_this_session": 77.41604590415955}
+{"time": "2026-11-10 21:11:34", "group": "4_a2c_variants", "run": "a2c_lin7e-4_seed42", "status": "solved", "frames": 3372448, "mean_reward_100": 19.0, "minutes_this_session": 28.219790144761404}
+{"time": "2026-11-10 21:31:07", "group": "4_a2c_variants", "run": "a2c_n20_seed42", "status": "solved", "frames": 3397472, "mean_reward_100": 19.0, "minutes_this_session": 19.5463374098142}
+{"time": "2026-11-10 21:53:18", "group": "4_a2c_variants", "run": "a2c_32envs_seed42", "status": "solved", "frames": 4108544, "mean_reward_100": 19.0, "minutes_this_session": 22.17634119192759}
+{"time": "2026-11-10 23:18:55", "group": "4_a2c_variants", "run": "a2c_noent_seed42", "status": "max_frames", "frames": 10000000, "mean_reward_100": -21.0, "minutes_this_session": 85.62543423573176}

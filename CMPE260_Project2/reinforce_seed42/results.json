@@ -1,18 +1,29 @@
 {
   "run_tag": "reinforce_seed42",
   "algorithm": "reinforce",
-  "status": "max_frames",
-  "frames": 15007744,
-  "env_frames": 60030976,
-  "episodes": 12644,
-  "updates": 1832,
-  "samples_used": 14030356,
-  "mean_reward_100": -10.15,
-  "best_mean_reward_100": -8.73,
-  "milestones": {},
-  "wall_clock_seconds": 4494.385548699996,
-  "wall_clock_minutes": 74.90642581166661,
-  "avg_fps": 3339.220420095245,
+  "status": "solved",
+  "frames": 17829456,
+  "env_frames": 71317824,
+  "episodes": 13616,
+  "updates": 2176,
+  "samples_used": 16568176,
+  "mean_reward_100": 19.0,
+  "best_mean_reward_100": 19.0,
+  "milestones": {
+    "+15": {
+      "frame": 17637792,
+      "episodes": 13514,
+      "wall_minutes": 88.1189781350006
+    },
+    "solved": {
+      "frame": 17829456,
+      "episodes": 13616,
+      "wall_minutes": 89.112692556668
+    }
+  },
+  "wall_clock_seconds": 5346.886717300047,
+  "wall_clock_minutes": 89.11477862166745,
+  "avg_fps": 3334.549045580514,
   "gpu": "NVIDIA GeForce RTX 5080 Laptop GPU",
   "cpu_count": 24,
   "num_params": 1687206,
@@ -36,13 +47,15 @@
     "normalize_returns": true,
     "update_chunk": 4096,
     "use_amp": true,
-    "max_frames": 15000000,
+    "max_frames": 40000000,
     "reward_bound": 19.0,
     "min_episodes_to_solve": 100,
     "convergence_threshold": 15.0,
     "checkpoint_every": 250000,
     "diagnostic_every": 10000,
     "best_save_interval": 50000,
-    "print_every_seconds": 30.0
+    "print_every_seconds": 30.0,
+    "value_baseline": false,
+    "lr_schedule": "constant"
   }
 }
