@@ -1,0 +1,25 @@
+﻿,DQN ε-greedy baseline (P1),DQN NoisyNet + PER (P1 best),"REINFORCE, T=512, lr 0.0005, adam (first tuned)","REINFORCE, T=256, lr 0.0005, adam (best)","A2C, n=5, lr 0.00035, rmsprop (best = first tuned)"
+family,"value-based (learns Q(s,a))","value-based (learns Q(s,a))",policy gradient (learns π(a|s)),policy gradient (learns π(a|s)),actor-critic (learns π(a|s) and V(s))
+data use,"off-policy: replay buffer, each frame reused","off-policy: replay buffer, each frame reused",on-policy: each sample used once,on-policy: each sample used once,on-policy: each sample used once
+learning target,1-step TD with max over actions,1-step TD with max over actions,Monte-Carlo return (per point),Monte-Carlo return (per point),n-step bootstrapped return
+value estimator,"Q(s,a)","Q(s,a)",none (actual returns),none (actual returns),V(s) critic
+"hardware (GPU, parallel envs)",NVIDIA L4; 1 env,NVIDIA L4; 1 env,NVIDIA GeForce RTX 5080 Laptop GPU; 16 envs,NVIDIA GeForce RTX 5080 Laptop GPU; 16 envs,NVIDIA GeForce RTX 5080 Laptop GPU; 16 envs
+runs (seeds) with results,1 of 1,1 of 1,1 of 1,1 of 1,3 of 3
+solved (mean-100 ≥ 19),0 of 1,1 of 1,1 of 1,1 of 1,3 of 3
+frames to +15,"757,740 (1 seed)","312,664 (1 seed)","17,637,792 (1 seed)","14,759,696 (1 seed)","2,167,669 ± 363,608 (n=3)"
+frames to solve,—,"364,098 (1 seed)","17,829,456 (1 seed)","14,834,848 (1 seed)","3,842,288 ± 62,843 (n=3)"
+episodes to solve,—,189 (1 seed),"13,616 (1 seed)","12,307 (1 seed)","2,001 ± 104 (n=3)"
+wall-clock min to solve †,—,54.6 (1 seed),89.1 (1 seed),77.3 (1 seed),34.3 ± 1.0 (n=3)
+agent steps / s †,171 (1 seed),111 (1 seed),"3,335 (1 seed)","3,199 (1 seed)","1,866 ± 74 (n=3)"
+gradient updates (total),"≈1,990,000 (1 seed)","≈354,098 (1 seed)","2,176 (1 seed)","3,621 (1 seed)","48,028 ± 786 (n=3)"
+states per gradient update,32,32,"7,614 (1 seed)","3,557 (1 seed)",80 ± 0 (n=3)
+sample reuse (gradient samples / frame),≈31.84 (1 seed),≈31.12 (1 seed),0.93 (1 seed),0.87 (1 seed),1.00 ± 0.00 (n=3)
+best reward_100,+18.98 (1 seed),+19.00 (1 seed),+19.00 (1 seed),+19.04 (1 seed),+19.01 ± 0.01 (n=3)
+evaluation score (30 games),greedy +21.00 ± 0.00; ε=0.02 +19.57 ± 1.02,greedy +21.00 ± 0.00; ε=0.02 +17.77 ± 2.69,sampled policy +18.40 (1 seed),sampled policy +20.23 (1 seed),sampled policy +19.81 ± 0.14 (n=3)
+bias: value estimate − actual return,+0.584,+0.615,"n/a (no value estimate; uses actual returns, unbiased)","n/a (no value estimate; uses actual returns, unbiased)",-0.026 ± 0.029 (n=3)
+mean |value estimate − actual return|,0.584,0.615,n/a,n/a,0.166 ± 0.030 (n=3)
+% steps over-estimated,100%,100%,n/a,n/a,25% ± 5% (n=3)
+variance: learning-signal std (mean over training),n/a (value-based; no policy-gradient weight),n/a (value-based; no policy-gradient weight),0.470 (1 seed),0.441 (1 seed),0.114 ± 0.002 (n=3)
+variance: learning-signal std (last 20% of training),n/a,n/a,0.637 (1 seed),0.640 (1 seed),0.079 ± 0.005 (n=3)
+critic explained variance (last 20% of training),n/a,n/a,n/a (no critic),n/a (no critic),0.95 ± 0.01 (n=3)
+parameters,"1,687,206","3,296,428","1,687,206","1,687,206","1,687,719"

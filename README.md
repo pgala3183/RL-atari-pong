@@ -9,14 +9,14 @@ each agent step is 4 emulator frames.
 
 | Method | Frames to solve | Wall-clock to solve | Evaluation (30 games) |
 |---|---|---|---|
-| DQN NoisyNet + PER (Project 1) | **0.38M** | 62 min (Colab T4) | — |
-| DQN ε-greedy baseline (Project 1) | not solved in 2M (best 18.98) | — | +19.73 ± 1.18 (ε = 0.02) |
+| DQN NoisyNet + PER (Project 1) | **0.36M** | 55 min (Colab L4) | +21.00 greedy, +17.77 ± 2.69 (ε = 0.02) |
+| DQN ε-greedy baseline (Project 1) | not solved in 2M (best 18.98) | — | +21.00 greedy, +19.57 ± 1.02 (ε = 0.02) |
 | **A2C**, 3 seeds | 3.84M ± 0.06M | **34.3 ± 1.0 min** | +19.70 to +19.97 |
 | **REINFORCE** (rollout 512) | 17.83M | 89 min | +18.40 ± 5.14 |
 | REINFORCE, rollout 256 | 14.83M | 77 min | +20.23 ± 1.43 |
 
 Project 2 runs used an NVIDIA RTX 5080 Laptop GPU, 24 CPU cores and 16 parallel environments, so
-wall-clock times are not directly comparable with Project 1 (Colab GPUs, one environment).
+wall-clock times are not directly comparable with Project 1 (Google Colab NVIDIA L4, one environment).
 
 **Takeaways**
 
@@ -30,9 +30,11 @@ wall-clock times are not directly comparable with Project 1 (Colab GPUs, one env
 * **REINFORCE is learning-rate sensitive:** at lr 1e-3 the policy stayed essentially random (entropy at its
   maximum) for all 20M frames.
 * **A2C's critic is nearly unbiased:** V(s) − actual return is between −0.05 and +0.01 for the three seeds.
+* **DQN over-estimates:** its Q(s,a) is above the actual discounted return by +0.46 to +0.62 on almost
+  every step (greedy play, measured from the saved Project 1 checkpoints; DQN was not retrained).
 
-All variants use a single seed, and the DQN over-estimation measurement is still missing (it needs the
-Project 1 checkpoints).
+Apart from the three-seed A2C group, every variant uses a single seed. The final notebook adds more
+seeds and experiments (see below).
 
 ![Extended learning curves](CMPE260_Project2/extended_learning_curves.png)
 
@@ -59,12 +61,14 @@ checkpoint with the best training mean-100 reward, sampling from the policy.
 
 | Path | What it is |
 |---|---|
+| `CMPE260_Project2_Final.ipynb` | **Final notebook**: every experiment (earlier ones marked done, 4 new REINFORCE and 8 new A2C experiments queued), all result tables, and the final DQN vs REINFORCE vs A2C comparison |
 | `CMPE260_Project2_PG_Pong.ipynb` | Main notebook: REINFORCE, A2C, hyper-parameter sweeps, evaluation, comparison |
 | `CMPE260_Project2_PG_Pong_executed.ipynb` | Main notebook with the outputs of the first run |
 | `CMPE260_Project2_Extended.ipynb` | Extended experiments: more seeds, longer REINFORCE training, REINFORCE and A2C variants |
 | `CMPE260_Project2_Extended_executed.ipynb` | Extended notebook with the outputs of its run |
 | `pong_envs.py` | Atari wrappers (written by the notebooks; needed by Windows worker processes) |
-| `CMPE260_Project2/` | All results |
+| `CMPE260_Project2/` | All Project 2 results |
+| `CMPE260_Project1/` | Project 1 DQN results, only read for the final comparison: `results.json`, evaluation files, TensorBoard logs and `evaluation_bias_*.json` (Q-value over-estimation measured on the Project 1 models); no checkpoints, nothing re-run |
 
 Inside `CMPE260_Project2/`:
 
@@ -72,7 +76,9 @@ Inside `CMPE260_Project2/`:
   episode's frame, reward, length and wall-clock time) and TensorBoard logs. `reinforce_seed42/` and
   `a2c_seed42/` also contain the trained model (`best.pt`); `reinforce_seed42/best.pt` is the solved model.
 * `sweep_*`: the hyper-parameter trials from the first run, summarised in `sweep_reinforce.csv` and `sweep_a2c.csv`.
-* `eval_*.json`: 30-episode evaluations, including the value-estimate bias measurement.
+* `eval_*.json`: 30-episode evaluations of the REINFORCE and A2C models, including the critic-bias measurement.
+* `final_*`: tables and plots of the final notebook (`final_comparison.md` is the three-way comparison,
+  `final_hyperparameters.md` the final tuned settings, `final_experiment_tables.md` one table per experiment).
 * `extended_results.*`, `extended_learning_curves.png`, `extended_queue_log.jsonl`: the extended comparison.
 * `comparison_table.*`, `learning_curves.png`, `value_bias.png`, `eval_reinforce_seed42_greedy.json`:
   from the first run, when REINFORCE had trained for 15M frames and had not yet solved. They are kept
@@ -89,6 +95,9 @@ Resume checkpoints (`latest.pt`) and the models of the other runs are not includ
 2. **Extended notebook:** A2C seeds 43 and 44; REINFORCE resumed from 15M (it solved at 17.83M); REINFORCE
    variants at 20M frames; and A2C variants capped at 10M frames, stopping once solved. The whole queue took
    9 h 20 min on the RTX 5080 laptop.
+3. **Final notebook:** the new experiments R1–R4 (REINFORCE) and A1–A8 (A2C), built on the best
+   configuration of each algorithm (REINFORCE rollout 256, A2C 20-step returns). Earlier runs are read
+   from their saved results and never retrained. Without an NVIDIA GPU the notebook only rebuilds the tables.
 
 ## Running it
 
